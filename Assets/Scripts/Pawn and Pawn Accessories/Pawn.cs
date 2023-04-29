@@ -9,6 +9,7 @@ public abstract class Pawn : MonoBehaviour
     public GameObject bulletPrefab;
     public Shooter shooter;
     public Mover mover;
+    public Noisemaker noise;
     public float shootForce;
     public float damageDone;
     public Transform shootPoint;
@@ -20,6 +21,7 @@ public abstract class Pawn : MonoBehaviour
     {
         mover = GetComponent<Mover>();
         shooter = GetComponent<Shooter>();
+        noise = GetComponent<Noisemaker>();
     }
 
     // Update is called once per frame
@@ -37,4 +39,8 @@ public abstract class Pawn : MonoBehaviour
     public abstract void RotateCounterClockwise();
 
     public abstract void Shoot();
+
+    public abstract void TurnTowards(Vector3 targetPosition);
+
+    public abstract void TurnAway(Vector3 targetPosition);
 }

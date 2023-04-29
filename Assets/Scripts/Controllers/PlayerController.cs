@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : Controller
 {
+    [Header("Controls")]
     public KeyCode moveForwardKey;
     public KeyCode moveBackwardKey;
     public KeyCode rotateClockwiseKey;
