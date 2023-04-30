@@ -8,18 +8,20 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerOneControllerPrefab;
     public GameObject tankPawnPrefab;
+
     public GameObject noobControllerPrefab;
     public GameObject noobTankPawnPrefab;
+
     public GameObject leeroyControllerPrefab;
     public GameObject leeroyTankPawnPrefab;
+
     public GameObject guardControllerPrefab;
     public GameObject guardTankPawnPrefab;
+
     public GameObject sniperControllerPrefab;
     public GameObject sniperTankPawnPrefab;
 
 
-    public Transform playerSpawnLocation;
-    public Transform enemySpawnLocation;
     public List<Transform> arenaWaypoints;
 
     public List<PlayerController> players;
@@ -42,6 +44,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SpawnPlayer();
+        SpawnNoob();
+        SpawnGuard();
+        SpawnLeeroy();
+        SpawnSniper();
     }
 
     void Update()
@@ -74,70 +80,98 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        //Spawn player controller
+        PlayerSpawn[] playerSpawns = FindObjectsOfType<PlayerSpawn>();
+        int randomIndex = Random.Range(0, playerSpawns.Length);
+
         GameObject newPlayerObj = Instantiate(playerOneControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 
         //Spawn player controllee
-        GameObject newPawnObj = Instantiate(tankPawnPrefab, playerSpawnLocation.position, playerSpawnLocation.rotation) as GameObject;
+        GameObject newPawnObj = Instantiate(tankPawnPrefab, playerSpawns[randomIndex].transform.position, playerSpawns[randomIndex].transform.rotation) as GameObject;
 
         Controller newController = newPlayerObj.GetComponent<Controller>();
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
 
         newController.pawn = newPawn;
+        newPawn.controller = newController;
 
+    }
+
+    public void RespawnPlayer(Controller oldController)
+    {
+        PlayerSpawn[] playerSpawns = FindObjectsOfType<PlayerSpawn>();
+        int randomIndex = Random.Range(0, playerSpawns.Length);
+
+        //Spawn player controllee
+        GameObject newPawnObj = Instantiate(tankPawnPrefab, playerSpawns[randomIndex].transform.position, playerSpawns[randomIndex].transform.rotation) as GameObject;
+        Pawn newPawn = newPawnObj.GetComponent<Pawn>();
+
+        oldController.pawn = newPawn;
+        newPawn.controller = oldController;
     }
 
     public void SpawnNoob()
     {
+        EnemySpawner[] enemySpawns = FindObjectsOfType<EnemySpawner>();
+        int randomIndex = Random.Range(0, enemySpawns.Length);
         //Spawn noob controller
         GameObject newNoobObj = Instantiate(noobControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
         //Spawn noob tank
-        GameObject newPawnObj = Instantiate(noobTankPawnPrefab, enemySpawnLocation.position, enemySpawnLocation.rotation);
+        GameObject newPawnObj = Instantiate(noobTankPawnPrefab, enemySpawns[randomIndex].transform.position, enemySpawns[randomIndex].transform.rotation);
         //Get noob controller and pawn component
         Controller newController = newNoobObj.GetComponent<Controller>();
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
         //And now we'll mix until stiff peaks form
         newController.pawn = newPawn;
+        newPawn.controller = newController;
     }
 
     public void SpawnLeeroy()
     {
+        EnemySpawner[] enemySpawns = FindObjectsOfType<EnemySpawner>();
+        int randomIndex = Random.Range(0, enemySpawns.Length);
         //Spawn LEEROOOOOOOOOOOOOOOOY controller
         GameObject newLeeroyObj = Instantiate(leeroyControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
         //Spawn LEEROOOOOOOOOOOOY tank
-        GameObject newPawnObj = Instantiate(leeroyTankPawnPrefab, enemySpawnLocation.position, enemySpawnLocation.rotation);
+        GameObject newPawnObj = Instantiate(leeroyTankPawnPrefab, enemySpawns[randomIndex].transform.position, enemySpawns[randomIndex].transform.rotation);
         //Get LEEROOOOOOOOOOOOOOOOOOOOOOOOOOOOY controller and pawn component
         Controller newController = newLeeroyObj.GetComponent<Controller>();
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
         //JENKINNNNNNNNNNNNNNNNNNNS!!!!!! 
         newController.pawn = newPawn;
+        newPawn.controller = newController;
         //oh my god he just ran in
     }
 
     public void SpawnGuard()
     {
+        EnemySpawner[] enemySpawns = FindObjectsOfType<EnemySpawner>();
+        int randomIndex = Random.Range(0, enemySpawns.Length);
         //Spawn guard controller
         GameObject newGuardObj = Instantiate(guardControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
         //Spawn guard tank
-        GameObject newPawnObj = Instantiate(guardTankPawnPrefab, enemySpawnLocation.position, enemySpawnLocation.rotation);
+        GameObject newPawnObj = Instantiate(guardTankPawnPrefab, enemySpawns[randomIndex].transform.position, enemySpawns[randomIndex].transform.rotation);
         //Get guard controller and pawn component
         Controller newController = newGuardObj.GetComponent<Controller>();
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
         //hook them together and give it its waypoints
         newController.pawn = newPawn;
+        newPawn.controller = newController;
         newGuardObj.GetComponent<AIController_Guard>().waypoints = arenaWaypoints;
     }
 
     public void SpawnSniper()
     {
+        EnemySpawner[] enemySpawns = FindObjectsOfType<EnemySpawner>();
+        int randomIndex = Random.Range(0, enemySpawns.Length);
         //Spawn sniper controller
         GameObject newSniperObj = Instantiate(sniperControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
         //Spawn sniper tank
-        GameObject newPawnObj = Instantiate(sniperTankPawnPrefab, enemySpawnLocation.position, enemySpawnLocation.rotation);
+        GameObject newPawnObj = Instantiate(sniperTankPawnPrefab, enemySpawns[randomIndex].transform.position, enemySpawns[randomIndex].transform.rotation);
         //Get sniper controller and pawn component
         Controller newController = newSniperObj.GetComponent<Controller>();
         Pawn newPawn = newPawnObj.GetComponent<Pawn>();
         //it's getting late, but pretend i made a joke about sniper tf2
         newController.pawn = newPawn;
+        newPawn.controller = newController; 
     }
 }

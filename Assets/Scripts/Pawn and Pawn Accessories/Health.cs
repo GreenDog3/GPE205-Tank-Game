@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
     void Start()
     {
         myPawn = GetComponent<Pawn>();
-        myController = GetComponent<Controller>();
+        myController = myPawn.controller;
         currentHealth = maxHealth;
 
     }
@@ -38,7 +38,17 @@ public class Health : MonoBehaviour
 
     public void Die(Pawn killer) 
     {
-        Destroy(myController);
-        Destroy(gameObject);
+        Debug.Log(killer.name + " DESTROYED " + gameObject.name + " with FACTS and LOGIC");
+        myController.lives--;
+        if (myController.lives > 0)
+        {   //If we have lives left
+            GameManager.instance.RespawnPlayer(myController);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(myController);
+            Destroy(gameObject);
+        }
     }
 }

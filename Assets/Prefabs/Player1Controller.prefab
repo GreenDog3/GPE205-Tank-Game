@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
+  lives: 3
+  score: 0
   moveForwardKey: 273
   moveBackwardKey: 274
   rotateClockwiseKey: 275

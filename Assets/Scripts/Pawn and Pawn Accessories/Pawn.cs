@@ -10,6 +10,7 @@ public abstract class Pawn : MonoBehaviour
     public Shooter shooter;
     public Mover mover;
     public Noisemaker noise;
+    public Controller controller;
     public float shootForce;
     public float damageDone;
     public Transform shootPoint;

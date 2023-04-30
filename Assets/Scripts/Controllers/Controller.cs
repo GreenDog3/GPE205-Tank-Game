@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class Controller : MonoBehaviour
 {
     public Pawn pawn;
+    public int lives;
+    public int score;
     
     // Start is called before the first frame update
     public virtual void Start()

@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 1235055850611705687}
   - component: {fileID: 3880419141003853214}
   - component: {fileID: 3407603511215272670}
+  - component: {fileID: 6010501248337884958}
   m_Layer: 0
   m_Name: GuardTank
   m_TagString: Untagged
@@ -64,7 +65,7 @@ Transform:
   m_GameObject: {fileID: 8052028588291121901}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.6620312, y: 0.47, z: -13.068214}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2301563091547566988}
@@ -216,3 +217,15 @@ MonoBehaviour:
   currentHealth: 0
   myPawn: {fileID: 0}
   myController: {fileID: 0}
+--- !u!114 &6010501248337884958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8052028588291121901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88479a9555193b4799c2c44d51e02a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
