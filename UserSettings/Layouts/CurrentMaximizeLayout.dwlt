@@ -224,9 +224,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 4c5c0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 38fbffff
+      m_ExpandedIDs: e4f8ffff32fbfffff4ffffff505a00006e5a0000ce5a0000745b0000ac5b0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -310,8 +310,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: -100, y: -25.600006}
+      snapOffset: {x: -101, y: -26}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -502,9 +502,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 60.695717, y: -19.728447, z: 69.140175}
+    m_Target: {x: 409.80002, y: 195, z: 0}
     speed: 2
-    m_Value: {x: 60.695717, y: -19.728447, z: 69.140175}
+    m_Value: {x: 409.80002, y: 195, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -551,13 +551,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.20933007, y: 0.008800499, z: -0.001883967, w: 0.9778054}
+    m_Target: {x: -0.011075455, y: -0.06894099, z: -0.00076447293, w: 0.9975603}
     speed: 2
-    m_Value: {x: 0.20932972, y: 0.008800484, z: -0.0018839638, w: 0.97780377}
+    m_Value: {x: -0.01107544, y: -0.0689409, z: -0.00076447194, w: 0.997559}
   m_Size:
-    m_Target: 64.155014
+    m_Target: 95.026306
     speed: 2
-    m_Value: 64.155014
+    m_Value: 95.026306
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -650,22 +650,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts/UI
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts/UI
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\green\GPE205TankGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 485d0000
-    m_LastClickedID: 23880
-    m_ExpandedIDs: 00000000465d0000485d00004a5d000000ca9a3b
+    scrollPos: {x: 0, y: 62.200012}
+    m_SelectedIDs: f05f0000
+    m_LastClickedID: 24560
+    m_ExpandedIDs: 000000009c5f00009e5f0000a05f0000a65f0000ae5f000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -693,7 +693,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000465d0000485d00004a5d000000ca9a3b
+    m_ExpandedIDs: 000000009c5f00009e5f0000a05f0000a65f000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -718,9 +718,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 4c5c0000
-    m_LastClickedInstanceID: 23628
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000cc590000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -796,8 +796,8 @@ MonoBehaviour:
     y: 0
     width: 455.19995
     height: 730.8
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}

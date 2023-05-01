@@ -78,6 +78,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDone: 0
   owner: {fileID: 0}
+  impact: {fileID: 8300000, guid: d4475ae0e2e721048a1b825bf04ab9fa, type: 3}
+  source: {fileID: 0}
 --- !u!1 &5798346723466756722
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class MapGenerator : MonoBehaviour
     public float roomWidth = 50.0f;
     public float roomHeight = 50.0f;
     private Room[,] grid;
-    public enum MapType { Random, MapOfTheDay, Seed };
+    public enum MapType { Random, MapOfTheDay };
     public MapType type;
 
     public GameObject RandomRoomPrefab()
@@ -20,6 +20,8 @@ public class MapGenerator : MonoBehaviour
     }
     public void GenerateMap()
     {
+        type = (MapType)GameManager.instance.typeOfMap;
+        mapSeed = (int)GameManager.instance.mapSeed;
         //Seed the rng based on the type chosen
         if (type == MapType.Random)
         {
@@ -28,12 +30,12 @@ public class MapGenerator : MonoBehaviour
             time = System.DateTime.Now;
             Random.InitState((int)time.Ticks);
         }
-        else if (type == MapType.Seed)
+        /*else if (type == MapType.Seed)
         {
             //Seed based on a chosen number.
             Random.InitState(mapSeed);
 
-        }
+        }*/
         else
         {
             //Seed based on today's date

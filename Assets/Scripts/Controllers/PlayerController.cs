@@ -23,6 +23,8 @@ public class PlayerController : Controller
     {
         base.Update();
         ProcessInputs();
+        GameManager.instance.DisplayScore(score);
+        GameManager.instance.DisplayLives(lives);
     }
 
     public void ProcessInputs()
@@ -47,6 +49,11 @@ public class PlayerController : Controller
         {
             pawn.Shoot();
         }
+    }
+
+    public override void AddToScore(int points)
+    {
+        score += points;
     }
 
     public void OnDestroy()

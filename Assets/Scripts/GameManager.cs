@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    [Header("Player Prefabs")]
     public GameObject playerOneControllerPrefab;
     public GameObject tankPawnPrefab;
-
+    [Header("AI Prefabs")]
     public GameObject noobControllerPrefab;
     public GameObject noobTankPawnPrefab;
 
@@ -21,12 +22,27 @@ public class GameManager : MonoBehaviour
     public GameObject sniperControllerPrefab;
     public GameObject sniperTankPawnPrefab;
 
-
+    [Header("Waypoints")]
     public List<Transform> arenaWaypoints;
+    public GameObject mapGeneratorPrefab;
+    public AudioSource source;
 
+    [Header("Lists")]
     public List<PlayerController> players;
     public List<AIController> enemies;
-    
+    [Header("UI Prefabs")]
+    public GameObject titleScreenStateObject;
+    public GameObject mainMenuStateObject;
+    public GameObject optionsStateObject;
+    public GameObject creditsStateObject;
+    public GameObject gameplayStateObject;
+    public GameObject gameOverStateObject;
+    public int typeOfMap;
+    public int mapSeed;
+    public TextMeshProUGUI playerOneScore;
+    public TextMeshProUGUI playerOneLives;
+    public TextMeshProUGUI gameOverText;
+
     private void Awake()
     {
         if (instance == null) //if no gamemanager
@@ -43,11 +59,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnPlayer();
-        SpawnNoob();
-        SpawnGuard();
-        SpawnLeeroy();
-        SpawnSniper();
+        DeactivateAllStates();
+        ActivateTitleScreen();
     }
 
     void Update()
@@ -78,6 +91,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SpawnMap()
+    {
+        
+        GameObject newMapGenerator = Instantiate(mapGeneratorPrefab, Vector3.zero, Quaternion.identity);
+    }
     public void SpawnPlayer()
     {
         PlayerSpawn[] playerSpawns = FindObjectsOfType<PlayerSpawn>();
@@ -173,5 +191,128 @@ public class GameManager : MonoBehaviour
         //it's getting late, but pretend i made a joke about sniper tf2
         newController.pawn = newPawn;
         newPawn.controller = newController; 
+    }
+
+    private void DeactivateAllStates()
+    {
+        //turns off all the states
+        titleScreenStateObject.SetActive(false);
+        mainMenuStateObject.SetActive(false);
+        optionsStateObject.SetActive(false);
+        creditsStateObject.SetActive(false);
+        gameplayStateObject.SetActive(false);
+        gameOverStateObject.SetActive(false);
+    }
+    
+    public void ActivateTitleScreen()
+    {
+        DeactivateAllStates();
+        //Activate the Title Screen!
+        titleScreenStateObject.SetActive(true);
+    }
+
+    public void ActivateMainMenuScreen()
+    {
+        DeactivateAllStates();
+        //Activate the Main Menu!
+        mainMenuStateObject.SetActive(true);
+    }
+
+    public void ActivateOptionsScreen()
+    {
+        DeactivateAllStates();
+        //Activate the Options menu!
+        optionsStateObject.SetActive(true);
+    }
+
+    public void ActivateCreditsScreen()
+    {
+        DeactivateAllStates();
+        //Activate the credits screen so i can point at it if i show the game to a friend!
+        creditsStateObject.SetActive(true);
+    }
+
+    public void ActivateGameplayScreen()
+    {
+        //Deactivate other states
+        DeactivateAllStates();
+        //Reset level
+        Room[] existingMap = FindObjectsOfType<Room>();
+        MapGenerator[] existingGenerator = FindObjectsOfType<MapGenerator>();
+        for (int i = 0; i < existingMap.Length;)
+        {
+            Destroy(existingMap[i]);
+        }
+        for (int i = 0; i < existingMap.Length;)
+        {
+            Destroy(existingGenerator[i]);
+        }
+        //Generate map
+        SpawnMap();
+        //clear the controller lists
+        players.Clear();
+        enemies.Clear();
+        //Spawn player and enemies
+        SpawnPlayer();
+        SpawnNoob();
+        SpawnGuard();
+        SpawnLeeroy();
+        SpawnSniper();
+        //Activate the Gameplay screen!
+        gameplayStateObject.SetActive(true);
+        //Start game
+        
+        
+    }
+
+    public void ActivateGameOverScreen(bool victory)
+    {
+        DeactivateAllStates();
+        //Either point and laugh at the player for losing or congratulate them on winning! We'll figure that out later!!
+        gameOverStateObject.SetActive(true);
+        if (victory == true)
+        {
+            gameOverText.text = "You win!";
+        }
+        else
+        {
+            gameOverText.text = "You lose...";
+        }
+    }
+
+    public void DisplayScore(int score)
+    {
+        playerOneScore.text = "Score: " + score;
+    }
+    public void DisplayLives(int lives)
+    {
+        playerOneLives.text = "Lives: " + lives;
+    }
+
+    public void TryGameOver()
+    {
+        bool isGameOver = true;
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i].lives > 0)
+            {   //If player has lives, the game is not over
+                isGameOver = false;
+            }
+        }
+
+        if (isGameOver == true)
+        {
+            ActivateGameOverScreen(false);
+        }
+
+        if (enemies.Count == 0)
+        {
+            isGameOver = true;
+        }
+
+        if (isGameOver == true)
+        {
+            ActivateGameOverScreen(true);
+        }
     }
 }
